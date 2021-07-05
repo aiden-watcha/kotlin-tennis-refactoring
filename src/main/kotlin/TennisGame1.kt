@@ -16,15 +16,7 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
         if (player1Score == player2Score) {
             return getScoreWhenSameScore()
         } else if (player1Score >= 4 || player2Score >= 4) {
-            val minusResult = player1Score - player2Score
-            if (minusResult == 1)
-                score = "Advantage player1"
-            else if (minusResult == -1)
-                score = "Advantage player2"
-            else if (minusResult >= 2)
-                score = "Win for player1"
-            else
-                score = "Win for player2"
+            return getScoreForAdvantage()
         } else {
             for (i in 1..2) {
                 if (i == 1)
@@ -42,6 +34,16 @@ class TennisGame1(private val player1Name: String, private val player2Name: Stri
             }
         }
         return score
+    }
+
+    private fun getScoreForAdvantage(): String {
+        val minusResult = player1Score - player2Score
+        return when {
+            minusResult == 1 -> "Advantage player1"
+            minusResult == -1 -> "Advantage player2"
+            minusResult >= 2 -> "Win for player1"
+            else -> "Win for player2"
+        }
     }
 
     private fun getScoreWhenSameScore(): String {
