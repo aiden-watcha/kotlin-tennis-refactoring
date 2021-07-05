@@ -3,117 +3,93 @@ package tennis2
 import TennisGame
 
 class TennisGame2(private val player1Name: String, private val player2Name: String) : TennisGame {
-    var P1point: Int = 0
-    var P2point: Int = 0
+    private var player1Point: Int = 0
+    private var player2Point: Int = 0
 
-    var P1res: String = ""
-    var P2res: String = ""
+    private var player1Resource: String = ""
+    private var player2Resource: String = ""
 
     override fun getScore(): String {
         var score = ""
-        if (P1point == P2point && P1point < 4) {
-            if (P1point == 0)
+        if (player1Point == player2Point && player1Point < 4) {
+            if (player1Point == 0)
                 score = "Love"
-            if (P1point == 1)
+            if (player1Point == 1)
                 score = "Fifteen"
-            if (P1point == 2)
+            if (player1Point == 2)
                 score = "Thirty"
             score += "-All"
         }
-        if (P1point == P2point && P1point >= 3)
+        if (player1Point == player2Point && player1Point >= 3)
             score = "Deuce"
 
-        if (P1point > 0 && P2point == 0) {
-            if (P1point == 1)
-                P1res = "Fifteen"
-            if (P1point == 2)
-                P1res = "Thirty"
-            if (P1point == 3)
-                P1res = "Forty"
+        if (player1Point > 0 && player2Point == 0) {
+            if (player1Point == 1)
+                player1Resource = "Fifteen"
+            if (player1Point == 2)
+                player1Resource = "Thirty"
+            if (player1Point == 3)
+                player1Resource = "Forty"
 
-            P2res = "Love"
-            score = "$P1res-$P2res"
+            player2Resource = "Love"
+            score = "$player1Resource-$player2Resource"
         }
-        if (P2point > 0 && P1point == 0) {
-            if (P2point == 1)
-                P2res = "Fifteen"
-            if (P2point == 2)
-                P2res = "Thirty"
-            if (P2point == 3)
-                P2res = "Forty"
+        if (player2Point > 0 && player1Point == 0) {
+            if (player2Point == 1)
+                player2Resource = "Fifteen"
+            if (player2Point == 2)
+                player2Resource = "Thirty"
+            if (player2Point == 3)
+                player2Resource = "Forty"
 
-            P1res = "Love"
-            score = "$P1res-$P2res"
-        }
-
-        if (P1point > P2point && P1point < 4) {
-            if (P1point == 2)
-                P1res = "Thirty"
-            if (P1point == 3)
-                P1res = "Forty"
-            if (P2point == 1)
-                P2res = "Fifteen"
-            if (P2point == 2)
-                P2res = "Thirty"
-            score = "$P1res-$P2res"
-        }
-        if (P2point > P1point && P2point < 4) {
-            if (P2point == 2)
-                P2res = "Thirty"
-            if (P2point == 3)
-                P2res = "Forty"
-            if (P1point == 1)
-                P1res = "Fifteen"
-            if (P1point == 2)
-                P1res = "Thirty"
-            score = "$P1res-$P2res"
+            player1Resource = "Love"
+            score = "$player1Resource-$player2Resource"
         }
 
-        if (P1point > P2point && P2point >= 3) {
+        if (player1Point > player2Point && player1Point < 4) {
+            if (player1Point == 2)
+                player1Resource = "Thirty"
+            if (player1Point == 3)
+                player1Resource = "Forty"
+            if (player2Point == 1)
+                player2Resource = "Fifteen"
+            if (player2Point == 2)
+                player2Resource = "Thirty"
+            score = "$player1Resource-$player2Resource"
+        }
+        if (player2Point > player1Point && player2Point < 4) {
+            if (player2Point == 2)
+                player2Resource = "Thirty"
+            if (player2Point == 3)
+                player2Resource = "Forty"
+            if (player1Point == 1)
+                player1Resource = "Fifteen"
+            if (player1Point == 2)
+                player1Resource = "Thirty"
+            score = "$player1Resource-$player2Resource"
+        }
+
+        if (player1Point > player2Point && player2Point >= 3) {
             score = "Advantage player1"
         }
 
-        if (P2point > P1point && P1point >= 3) {
+        if (player2Point > player1Point && player1Point >= 3) {
             score = "Advantage player2"
         }
 
-        if (P1point >= 4 && P2point >= 0 && P1point - P2point >= 2) {
+        if (player1Point >= 4 && player2Point >= 0 && player1Point - player2Point >= 2) {
             score = "Win for player1"
         }
-        if (P2point >= 4 && P1point >= 0 && P2point - P1point >= 2) {
+        if (player2Point >= 4 && player1Point >= 0 && player2Point - player1Point >= 2) {
             score = "Win for player2"
         }
         return score
     }
 
-    fun SetP1Score(number: Int) {
-
-        for (i in 0 until number) {
-            P1Score()
-        }
-
-    }
-
-    fun SetP2Score(number: Int) {
-
-        for (i in 0 until number) {
-            P2Score()
-        }
-
-    }
-
-    fun P1Score() {
-        P1point++
-    }
-
-    fun P2Score() {
-        P2point++
-    }
-
     override fun wonPoint(player: String) {
-        if (player === "player1")
-            P1Score()
-        else
-            P2Score()
+        when {
+            player === "player1" -> player1Point++
+            else -> player2Point++
+        }
     }
 }
