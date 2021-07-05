@@ -1,3 +1,7 @@
+package tennis1
+
+import TennisGame
+
 class TennisGame1(private val player1Name: String, private val player2Name: String) : TennisGame {
 
     private var player1Score: Int = 0

@@ -3,6 +3,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
+import tennis1.TennisGame1
+import tennis2.TennisGame2
+import tennis3.TennisGame3
 import java.util.*
 
 @RunWith(Parameterized::class)
